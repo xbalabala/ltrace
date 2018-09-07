@@ -282,10 +282,6 @@ value_init_deref(struct value *ret_val, struct value *valp)
 	if (value_extract_word(valp, &l, NULL) < 0)
 		return -1;
 
-	/* We need "long" to be long enough to hold platform
-	 * pointers.  */
-	typedef char assert__long_enough_long[-(sizeof(l) < sizeof(void *))];
-
 	value_common_init(ret_val, valp->inferior, valp,
 			  valp->type->u.ptr_info.info, 0);
 	ret_val->u.value = l; /* Set the address.  */
